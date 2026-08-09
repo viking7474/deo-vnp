@@ -3,7 +3,7 @@
 #include "ProcessAccessHelp.h"
 
 #include "../Native/NativeWinApi.h"
-#include "../DeviceNameResolver/DeviceNameResolver.h";
+#include "../DeviceNameResolver/DeviceNameResolver.h"
 
 #include <Psapi.h>
 
@@ -32,7 +32,7 @@ HANDLE ProcessAccessHelp::NativeOpenProcess(DWORD dwDesiredAccess, DWORD dwProce
 	NTSTATUS ntStatus = 0;
 
 	InitializeObjectAttributes(&ObjectAttributes, 0, 0, 0, 0);
-	cid.UniqueProcess = (HANDLE)dwProcessId;
+	cid.UniqueProcess = (HANDLE)(ULONG_PTR)dwProcessId;
 
 	ntStatus = C_KernelWrapper::NtOpenProcess(&hProcess,dwDesiredAccess,&ObjectAttributes, &cid);
 
