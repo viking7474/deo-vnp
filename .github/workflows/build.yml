@@ -8,7 +8,7 @@ name: Build and Upload
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: windows-2022
 
     steps:
       - name: Checkout repository
