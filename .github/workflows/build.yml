@@ -17,6 +17,9 @@ jobs:
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v2
 
+      - name: Set up MSVC environment
+        uses: ilammy/msvc-dev-cmd@v1
+
       - name: Build
         run: >
           msbuild "VMP-Imports-Deobfuscator.sln"
