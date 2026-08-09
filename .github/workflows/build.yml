@@ -14,6 +14,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Install ATL
+        shell: powershell
+        run: |
+          & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vs_installer.exe" modify `
+            --installPath "C:\Program Files\Microsoft Visual Studio\18\Enterprise" `
+            --add Microsoft.VisualStudio.Component.VC.14.44.17.14.ATL `
+            --quiet --wait --norestart
+
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v2
 
@@ -21,7 +29,6 @@ jobs:
         run: >
           msbuild "VMP-Imports-Deobfuscator.sln"
           /p:Configuration=Release /p:Platform=x64
-          /p:UseOfATL=Static
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
